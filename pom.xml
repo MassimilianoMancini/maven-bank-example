@@ -42,6 +42,29 @@
     </dependency>
   </dependencies>
   <build>
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <groupId>org.pitest</groupId>
+          <artifactId>pitest-maven</artifactId>
+          <version>1.6.8</version>
+          <configuration>
+            <targetClasses>
+              <!-- excludes testing.example.bank.app.Main -->
+              <param>testing.example.bank.Bank*</param>
+            </targetClasses>
+            <targetTests>
+              <param>testing.example.bank.*</param>
+            </targetTests>
+            <mutators>
+              <mutator>DEFAULTS</mutator>
+              <mutator>NON_VOID_METHOD_CALLS</mutator>
+            </mutators>
+            <mutationThreshold>85</mutationThreshold>
+          </configuration>
+        </plugin>
+      </plugins>
+    </pluginManagement>
     <plugins>
       <plugin>
         <artifactId>maven-compiler-plugin</artifactId>
